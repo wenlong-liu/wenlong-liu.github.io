@@ -6,14 +6,14 @@
     <description>Recent content in Posts on Wenlong Liu&#39;s website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy; 2018 Wenlong Liu</copyright>
+    <copyright>&amp;copy; 2018 Wenlong Liu, CC BY 4.0</copyright>
     <lastBuildDate>Sun, 01 Jan 2017 00:00:00 -0500</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Brand new personal website of Wenlong Liu powered by Hugo-academic and Blogdown</title>
+      <title>Hello World!</title>
       <link>/post/brand-new-personal-website-of-wenlong-liu-powered-by-hugo-academic-and-blogdown/</link>
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
       
