@@ -11,6 +11,15 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Soil blogs in zhihu.com (in Chinese)</title>
+      <link>/project/example-external-project/</link>
+      <pubDate>Tue, 27 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/project/example-external-project/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Brief introduction of storm hysteresis effects in solute concentration-stream discharge (C-Q) relationship</title>
       <link>/post/brief-introduction-of-storm-hysteresis-in-solute-concentration-stream-discharge-c-q-relationship/</link>
       <pubDate>Sun, 25 Feb 2018 00:00:00 +0000</pubDate>
@@ -105,15 +114,6 @@
       <pubDate>Thu, 01 Dec 2016 00:00:00 +0000</pubDate>
       
       <guid>/publication/wrm_shuangcheng_tang_2016/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>External Project</title>
-      <link>/project/example-external-project/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/project/example-external-project/</guid>
       <description></description>
     </item>
     
