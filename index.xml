@@ -11,6 +11,30 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Insights from intensive water quality sampling in a drained agriculutral field</title>
+      <link>/talk/2018-04-11_wenlong_bryan_high_frequency/</link>
+      <pubDate>Wed, 11 Apr 2018 00:00:00 -0400</pubDate>
+      
+      <guid>/talk/2018-04-11_wenlong_bryan_high_frequency/</guid>
+      <description>&lt;p&gt;Preferred citation:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Liu, W&lt;/strong&gt;, B Maxwell, F Birgand, M Youssef, GM Chescheir. “Insights from intensive water quality sampling in a drained agriculutral field”  Agricultural Drainage Management Systems Task Force/NCERA 217, Raleigh, April 11-12, 2018&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Long-term temporal variation of nitrate concentration-stream discharge (C-Q) relationship for an agrcultural watershed in Midwest USA</title>
+      <link>/talk/2018-04-11-wenlong-liu-ncera/</link>
+      <pubDate>Wed, 11 Apr 2018 00:00:00 -0400</pubDate>
+      
+      <guid>/talk/2018-04-11-wenlong-liu-ncera/</guid>
+      <description>&lt;p&gt;Preferred citation:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Liu, W&lt;/strong&gt;, S Tian, M Youssef, F Birgand, GM Chescheir. “Long-term temporal variation of nitrate concentration-stream discharge (C-Q) relationship for an agrcultural watershed in Midwest USA”  Agricultural Drainage Management Systems Task Force/NCERA 217, Raleigh, April 11-12, 2018&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Soil blogs in zhihu.com (in Chinese)</title>
       <link>/project/example-external-project/</link>
       <pubDate>Tue, 27 Feb 2018 00:00:00 +0000</pubDate>
@@ -60,10 +84,10 @@
 &lt;h2&gt;References:&lt;/h2&gt;
 &lt;div id=&#34;refs&#34; class=&#34;references&#34;&gt;
 &lt;div id=&#34;ref-blaen2017high&#34;&gt;
-&lt;p&gt;Blaen, Phillip J, Kieran Khamis, Charlotte Lloyd, Sophie Comer-Warner, Francesco Ciocca, Rick M Thomas, A Rob MacKenzie, and Stefan Krause. 2017. “High-Frequency Monitoring of Catchment Nutrient Exports Reveals Highly Variable Storm Event Responses and Dynamic Source Zone Activation.” &lt;em&gt;Journal of Geophysical Research: Biogeosciences&lt;/em&gt; 122 (9). Wiley Online Library: 2265–81.&lt;/p&gt;
+&lt;p&gt;Blaen, Phillip J, Kieran Khamis, Charlotte Lloyd, Sophie Comer-Warner, Francesco Ciocca, Rick M Thomas, A Rob MacKenzie, and Stefan Krause. 2017. “High-Frequency Monitoring of Catchment Nutrient Exports Reveals Highly Variable Storm Event Responses and Dynamic Source Zone Activation.” &lt;em&gt;Journal of Geophysical Research: Biogeosciences&lt;/em&gt; 122 (9). Wiley Online Library:2265–81.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;ref-long2017patterns&#34;&gt;
-&lt;p&gt;Long, David T, Thomas C Voice, Irene Xagaroraki, Ao Chen, Huiyun Wu, Eunsang Lee, Amira Oun, and Fangli Xing. 2017. “Patterns of Cq Hysteresis Loops and Within an Integrative Pollutograph for Selected Inorganic and Organic Solutes and E. Coli in an Urban Salted Watershed During Winter-Early Spring Periods.” &lt;em&gt;Applied Geochemistry&lt;/em&gt; 83. Elsevier: 93–107.&lt;/p&gt;
+&lt;p&gt;Long, David T, Thomas C Voice, Irene Xagaroraki, Ao Chen, Huiyun Wu, Eunsang Lee, Amira Oun, and Fangli Xing. 2017. “Patterns of Cq Hysteresis Loops and Within an Integrative Pollutograph for Selected Inorganic and Organic Solutes and E. Coli in an Urban Salted Watershed During Winter-Early Spring Periods.” &lt;em&gt;Applied Geochemistry&lt;/em&gt; 83. Elsevier:93–107.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -72,11 +96,37 @@
     
     <item>
       <title>High frequency measurements in a drained agricultural field</title>
-      <link>/project/high-frequency-measurements/</link>
+      <link>/project/high_frequency_measurements/</link>
       <pubDate>Thu, 08 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>/project/high-frequency-measurements/</guid>
-      <description>&lt;p&gt;We installed self-designed high frequency sampling equipment to measure water quality from subsurface drainage in a drained agricultural field.&lt;/p&gt;
+      <guid>/project/high_frequency_measurements/</guid>
+      <description>&lt;p&gt;In order to further investigate the water movement and nutrient transport from agricultural fields, we developed equipment and algorithm to zoom in the hydrograph and chemograph both spatially and temporally.
+We installed self-designed high frequency sampling equipment to measure water quality from subsurface tile drainage outlet and from shallow groundwater.&lt;/p&gt;
+
+&lt;p&gt;In the drain outlet, we depolyed V-notch weir and pressure transducers to measure drainage flow, and optical spetrophometer to continuously monitor nitrate concentration. The layout is shwon in Fig. 1.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/img/gallery/Multi_point_sampler.jpg&#34; alt=&#34;Fig. 1&#34; /&gt;
+Fig. 1 A photo showing Wenlong Liu was working on the installation.&lt;/p&gt;
+
+&lt;p&gt;In shallow groundwater, we installed 10 precise water quality wells in different locations in shallow groundwater.  The multi-point sampler is used to collect &lt;strong&gt;fresh&lt;/strong&gt; water samples from wells every 6 minutes. In other words, we took measurements in each well every hour.  The picture of measuring device is shown in Fig. 2&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/img/mps.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Fig. 2 A photo showing a running multi-point sampler (MPS)&lt;/p&gt;
+
+&lt;p&gt;Further analysis of high frequency measurements were still undergoing as of April 2018.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Transforming denitrifying bioreactors research and application: unveiling the inside of the blackbox</title>
+      <link>/talk/2018-01-29_birgand_bioreactors/</link>
+      <pubDate>Mon, 29 Jan 2018 00:00:00 -0500</pubDate>
+      
+      <guid>/talk/2018-01-29_birgand_bioreactors/</guid>
+      <description>&lt;p&gt;Preferred citation:&lt;/p&gt;
+
+&lt;p&gt;Birgand, F, B Maxwell, S Tian, &lt;strong&gt;W Liu&lt;/strong&gt;, L Negm, M Youssef, G Chescheir, L Schipper, L Christianson, M Helmers, D Williams. &amp;ldquo;Transforming denitrifying bioreactors research and application: unveiling the inside of the blackbox&amp;rdquo; USDA NIFA and NSF Water and Soils Meeting, Project Director Meeting, Jan. 29-31, 2018.&lt;/p&gt;
 </description>
     </item>
     
