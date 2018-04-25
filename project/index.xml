@@ -28,7 +28,7 @@
       
       <guid>/project/high_frequency_measurements/</guid>
       <description>In order to further investigate the water movement and nutrient transport from agricultural fields, we developed equipment and algorithm to zoom in the hydrograph and chemograph both spatially and temporally. We installed self-designed high frequency sampling equipment to measure water quality from subsurface tile drainage outlet and from shallow groundwater.
-In the drain outlet, we depolyed V-notch weir and pressure transducers to measure drainage flow, and optical spetrophometer to continuously monitor nitrate concentration.</description>
+At the drainage tile outlet, we installed V-notch weir and pressure transducers to measure drainage flow, and an optical spetrophometer to continuously monitor nitrate concentration.</description>
     </item>
     
   </channel>
