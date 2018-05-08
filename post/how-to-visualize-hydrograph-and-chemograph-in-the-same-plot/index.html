@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.34" />
+  <meta name="author" content="Wenlong Liu">
+
+  
+  
+  
+  
+    
+      
+    
+  
+  <meta name="description" content="Recently, many researchers employ R to conduct data cleaning, manipulation and visualization. Among all the R packages, ggplot2 is one of the most popular, fancy and powerful tool to visualize data. Although ggplot2 is very convenient and easy to use, it is difficult to plot data in dual y-axis. According to the comments from Hadely Wichham, the main developer of ggplot2, the authors of ggplot2 hold the idea that:
+ It’s not possible in ggplot2 because I believe plots with separate y scales (not y-scales that are transformations of each other) are fundamentally flawed.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/how-to-visualize-hydrograph-and-chemograph-in-the-same-plot/">
+
+  
+
+
+  
+
+  
+  
+  <meta name="theme-color" content="#0095eb">
+  
+  
+  
+  
+    
+  
+  
+    
+    
+      
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+      
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+  
+  
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700%7cRoboto:400,400italic,700%7cRoboto&#43;Mono">
+  
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-102223458-1', 'auto');
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
+
+  
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Wenlong Liu&#39;s website">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Wenlong Liu&#39;s website">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/post/how-to-visualize-hydrograph-and-chemograph-in-the-same-plot/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@tianya0423">
+  <meta property="twitter:creator" content="@tianya0423">
+  
+  <meta property="og:site_name" content="Wenlong Liu&#39;s website">
+  <meta property="og:url" content="/post/how-to-visualize-hydrograph-and-chemograph-in-the-same-plot/">
+  <meta property="og:title" content="How to visualize hydrograph and chemograph in the same plot? | Wenlong Liu&#39;s website">
+  <meta property="og:description" content="Recently, many researchers employ R to conduct data cleaning, manipulation and visualization. Among all the R packages, ggplot2 is one of the most popular, fancy and powerful tool to visualize data. Although ggplot2 is very convenient and easy to use, it is difficult to plot data in dual y-axis. According to the comments from Hadely Wichham, the main developer of ggplot2, the authors of ggplot2 hold the idea that:
+ It’s not possible in ggplot2 because I believe plots with separate y scales (not y-scales that are transformations of each other) are fundamentally flawed.">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2018-05-08T00:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2018-05-08T00:00:00&#43;00:00">
+  
+
+  
+
+  <title>How to visualize hydrograph and chemograph in the same plot? | Wenlong Liu&#39;s website</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+      <a class="navbar-brand" href="/">Wenlong Liu&#39;s website</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#posts">
+            
+            <span>Blogs</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#publications">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#talks">
+            
+            <span>Presentations</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#projects">
+            
+            <span>Projects</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/gallery">
+            
+            <span>Photos</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+        
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <h1 itemprop="name">How to visualize hydrograph and chemograph in the same plot?</h1>
+
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2018-05-08 00:00:00 &#43;0000 UTC" itemprop="datePublished dateModified">
+      May 8, 2018
+    </time>
+  </span>
+  <span itemscope itemprop="author publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Wenlong Liu">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 min read
+  </span>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/post/how-to-visualize-hydrograph-and-chemograph-in-the-same-plot/#disqus_thread"></a>
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fa fa-folder"></i>
+    
+    <a href="/categories/research-outreach">Research outreach</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=How%20to%20visualize%20hydrograph%20and%20chemograph%20in%20the%20same%20plot%3f&amp;url=%2fpost%2fhow-to-visualize-hydrograph-and-chemograph-in-the-same-plot%2f"
+         target="_blank" rel="noopener">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2fhow-to-visualize-hydrograph-and-chemograph-in-the-same-plot%2f"
+         target="_blank" rel="noopener">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2fhow-to-visualize-hydrograph-and-chemograph-in-the-same-plot%2f&amp;title=How%20to%20visualize%20hydrograph%20and%20chemograph%20in%20the%20same%20plot%3f"
+         target="_blank" rel="noopener">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2fhow-to-visualize-hydrograph-and-chemograph-in-the-same-plot%2f&amp;title=How%20to%20visualize%20hydrograph%20and%20chemograph%20in%20the%20same%20plot%3f"
+         target="_blank" rel="noopener">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=How%20to%20visualize%20hydrograph%20and%20chemograph%20in%20the%20same%20plot%3f&amp;body=%2fpost%2fhow-to-visualize-hydrograph-and-chemograph-in-the-same-plot%2f">
+        <i class="fa fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+
+    <div class="article-style" itemprop="articleBody">
+      <p>Recently, many researchers employ R to conduct data cleaning, manipulation and visualization. Among all the R packages, ggplot2 is one of the most popular, fancy and powerful tool to visualize data. Although ggplot2 is very convenient and easy to use, it is difficult to plot data in dual y-axis. According to the comments from <a href="https://stackoverflow.com/questions/3099219/plot-with-2-y-axes-one-y-axis-on-the-left-and-another-y-axis-on-the-right/3101876#3101876">Hadely Wichham</a>, the main developer of ggplot2, the authors of ggplot2 hold the idea that:</p>
+<blockquote>
+<p>It’s not possible in ggplot2 because I believe plots with separate y scales (not y-scales that are transformations of each other) are fundamentally flawed. Some problems:</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>The[y] are not invertible: given a point on the plot space, you can not uniquely map it back to a point in the data space.</li>
+<li>They are relatively hard to read correctly compared to other options. See <a href="https://www.lri.fr/~isenberg/publications/papers/Isenberg_2011_ASO.pdf">A Study on Dual-Scale Data Charts</a> by Petra Isenberg, Anastasia Bezerianos, Pierre Dragicevic, and Jean-Daniel Fekete for details.</li>
+<li>They are easily manipulated to mislead: there is no unique way to specify the relative scales of the axes, leaving them open to manipulation. Two examples from the Junkcharts blog: <a href="http://junkcharts.typepad.com/junk_charts/2006/06/illusion_of_suc.html">one</a>, <a href="http://junkcharts.typepad.com/junk_charts/2006/05/the_crossover_l.html">two</a>.</li>
+<li>They are arbitrary: why have only 2 scales, not 3, 4 or ten?</li>
+</ul>
+</blockquote>
+<p>Even though there exist some concerns regarding dual y-axis plot, it is very convenient for hydrologist and environmental engineers, who focus on stream nutrient dynamics, to plot both hydrograph and chemograph in the same graph. To make the dual y-axis graph, we can use a built-in ggplot2 function, <a href="http://ggplot2.tidyverse.org/reference/sec_axis.html"><em>sec_axis()</em></a>, to add second y axis.</p>
+<div id="a-reproducible-example-to-show-hydrograph-and-chemograph" class="section level2">
+<h2>A reproducible example to show hydrograph and chemograph</h2>
+<p>The <em>sec_axis()</em> function is actually the projection the original y axis to a secondary axis. The tricky is to define a proper transformation function. We can use the ratio of maximum solute concentration over maximum stream discharge to transform the y axis. There is an example using the stream discharge and turbidity data from USGS.</p>
+<pre class="r"><code># import libraries
+require(dataRetrieval)
+require(ggplot2)
+require(dplyr)
+
+# information for usgs stations.
+station_Id = &quot;05446500&quot; #Rock River Near Joslin, IL
+parameter_code = c(&quot;00060&quot;, &quot;63680&quot;)  # discharge, Turbidity (Form Neph).
+start_date = &quot;2017-06-01&quot;
+end_date = &quot;2017-08-01&quot;
+
+# retrieve data from usgs.
+turbidity_flow = readNWISuv(siteNumbers = station_Id,
+                            parameterCd = parameter_code,
+                            startDate = start_date,
+                            endDate = end_date)
+# data cleaning.
+turbidity_flow = renameNWISColumns(turbidity_flow)
+param_info = attr(turbidity_flow, &quot;variableInfo&quot;)
+site_info = attr(turbidity_flow, &quot;siteInfo&quot;)
+
+# the ratio of maximum solute concentration over maximum flow.
+trans_ratio = max(turbidity_flow$.HACH._Turb_Inst, na.rm = TRUE) / 
+  max(turbidity_flow$Flow_Inst, na.rm = TRUE)
+
+# plot data
+ts = ggplot(turbidity_flow, aes(x = dateTime))+
+  geom_point(aes(y = Flow_Inst, color = &quot;Stream discharge&quot;))+
+  geom_line(aes(y = Flow_Inst, color = &quot;Stream discharge&quot;))+
+  geom_point(aes(y = .HACH._Turb_Inst/trans_ratio, color = &quot;Turbidity&quot;))+
+  geom_line(aes(y = .HACH._Turb_Inst/trans_ratio, color = &quot;Turbidity&quot;))+
+  scale_y_continuous(name = param_info$variableDescription[1],
+                     sec.axis = sec_axis(~.*trans_ratio, name = &quot;Turbidity, Form Neph, HACH&quot;))+
+  ggtitle(site_info$station_nm)+
+  labs(color = &quot;Parameters&quot;)+
+  theme(legend.position =  c(0.15, 0.85))
+
+ts</code></pre>
+<p><img src="/post/2018-05-08-how-to-visualize-hydrograph-and-chemograph-in-the-same-plot_files/figure-html/hydrograph-1.png" width="672" /></p>
+</div>
+<div id="further-materials" class="section level2">
+<h2>Further materials</h2>
+<p>The example in this blog only considers 1:1 transformation between two Axis. Sometime there are complicated conditions where the transformation formula needs more attentions. Please visit the following sites for more information:</p>
+<p><a href="https://rpubs.com/MarkusLoew/226759">Basic introduction of sec_axis()</a></p>
+<p><a href="https://whatalnk.github.io/r-tips/ggplot2-secondary-y-axis.nb.html">More complicated plots</a></p>
+</div>
+<div id="references" class="section level2">
+<h2>References:</h2>
+<p>Some of the information in this blog was adapted from <a href="https://rpubs.com/MarkusLoew/226759">Markus Loew</a>, <a href="https://owi.usgs.gov/R/dataRetrieval.html#1">DataRetrieval tutorial</a>, <a href="https://stackoverflow.com/questions/3099219/plot-with-2-y-axes-one-y-axis-on-the-left-and-another-y-axis-on-the-right/3101876#3101876">Hadley’s comments</a> and <a href="http://ggplot2.tidyverse.org/reference/sec_axis.html">Official website of sec_axis()</a></p>
+</div>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="btn btn-primary btn-outline" href="/tags/r">R</a>
+  
+  <a class="btn btn-primary btn-outline" href="/tags/c-q-relationship">C-Q relationship</a>
+  
+</div>
+
+
+
+
+    
+    
+    <div class="article-widget">
+      <div class="hr-light"></div>
+      <h3>Related</h3>
+      <ul>
+        
+        <li><a href="/post/brief-introduction-of-storm-hysteresis-in-solute-concentration-stream-discharge-c-q-relationship/">Brief introduction of storm hysteresis effects in solute concentration-stream discharge (C-Q) relationship</a></li>
+        
+        <li><a href="/project/high_frequency_measurements/">High frequency measurements in a drained agricultural field</a></li>
+        
+        <li><a href="/post/brand-new-personal-website-of-wenlong-liu-powered-by-hugo-academic-and-blogdown/">Hellow world!</a></li>
+        
+      </ul>
+    </div>
+    
+
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "wenlong-liu-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+  </div>
+</article>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2018 Wenlong Liu &middot; 
+
+      Powered by the
+      <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+      <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close btn-large" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cite</h4>
+      </div>
+      <div>
+        <pre><code class="modal-body tex"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary btn-outline js-copy-cite" href="#" target="_blank">
+          <i class="fa fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-primary btn-outline js-download-cite" href="#" target="_blank">
+          <i class="fa fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+    <script id="dsq-count-scr" src="//wenlong-liu-github-io.disqus.com/count.js" async></script>
+    
+
+    
+    <script async defer src="//maps.googleapis.com/maps/api/js?key=AIzaSyC3hnnxowDNcEmvZ3bVxBMR_akhIqWxm48"></script>
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.25/gmaps.min.js" integrity="sha256-7vjlAeb8OaTrCXZkCNun9djzuB2owUsaO72kXaFDBJs=" crossorigin="anonymous"></script>
+    
+    
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+      
+
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+
+  </body>
+</html>
+
