@@ -18,8 +18,7 @@
       <pubDate>Tue, 08 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/how-to-visualize-hydrograph-and-chemograph-in-the-same-plot/</guid>
-      <description>Recently, many researchers employ R to conduct data cleaning, manipulation and visualization. Among all the R packages, ggplot2 is one of the most popular, fancy and powerful tool to visualize data. Although ggplot2 is very convenient and easy to use, it is difficult to plot data in dual y-axis. According to the comments from Hadely Wichham, the main developer of ggplot2, the authors of ggplot2 hold the idea that:
- It’s not possible in ggplot2 because I believe plots with separate y scales (not y-scales that are transformations of each other) are fundamentally flawed.</description>
+      <description>Recently, many researchers employ R to conduct data cleaning, manipulation and visualization. Among all the R packages, ggplot2 is one of the most popular, fancy and powerful tool to visualize data. Although ggplot2 is very convenient and easy to use, it is difficult to plot data in dual y-axis. According to the comments from Hadely Wichham on June 23, 2010, the main developer of ggplot2, the authors of ggplot2 hold the idea that:</description>
     </item>
     
     <item>

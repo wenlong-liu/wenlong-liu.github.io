@@ -17,8 +17,7 @@
       
     
   
-  <meta name="description" content="Recently, many researchers employ R to conduct data cleaning, manipulation and visualization. Among all the R packages, ggplot2 is one of the most popular, fancy and powerful tool to visualize data. Although ggplot2 is very convenient and easy to use, it is difficult to plot data in dual y-axis. According to the comments from Hadely Wichham, the main developer of ggplot2, the authors of ggplot2 hold the idea that:
- It’s not possible in ggplot2 because I believe plots with separate y scales (not y-scales that are transformations of each other) are fundamentally flawed.">
+  <meta name="description" content="Recently, many researchers employ R to conduct data cleaning, manipulation and visualization. Among all the R packages, ggplot2 is one of the most popular, fancy and powerful tool to visualize data. Although ggplot2 is very convenient and easy to use, it is difficult to plot data in dual y-axis. According to the comments from Hadely Wichham on June 23, 2010, the main developer of ggplot2, the authors of ggplot2 hold the idea that:">
 
   
   <link rel="alternate" hreflang="en-us" href="/post/how-to-visualize-hydrograph-and-chemograph-in-the-same-plot/">
@@ -93,8 +92,7 @@
   <meta property="og:site_name" content="Wenlong Liu&#39;s website">
   <meta property="og:url" content="/post/how-to-visualize-hydrograph-and-chemograph-in-the-same-plot/">
   <meta property="og:title" content="How to visualize hydrograph and chemograph in the same plot? | Wenlong Liu&#39;s website">
-  <meta property="og:description" content="Recently, many researchers employ R to conduct data cleaning, manipulation and visualization. Among all the R packages, ggplot2 is one of the most popular, fancy and powerful tool to visualize data. Although ggplot2 is very convenient and easy to use, it is difficult to plot data in dual y-axis. According to the comments from Hadely Wichham, the main developer of ggplot2, the authors of ggplot2 hold the idea that:
- It’s not possible in ggplot2 because I believe plots with separate y scales (not y-scales that are transformations of each other) are fundamentally flawed.">
+  <meta property="og:description" content="Recently, many researchers employ R to conduct data cleaning, manipulation and visualization. Among all the R packages, ggplot2 is one of the most popular, fancy and powerful tool to visualize data. Although ggplot2 is very convenient and easy to use, it is difficult to plot data in dual y-axis. According to the comments from Hadely Wichham on June 23, 2010, the main developer of ggplot2, the authors of ggplot2 hold the idea that:">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2018-05-08T00:00:00&#43;00:00">
@@ -373,7 +371,7 @@
 
 
     <div class="article-style" itemprop="articleBody">
-      <p>Recently, many researchers employ R to conduct data cleaning, manipulation and visualization. Among all the R packages, ggplot2 is one of the most popular, fancy and powerful tool to visualize data. Although ggplot2 is very convenient and easy to use, it is difficult to plot data in dual y-axis. According to the comments from <a href="https://stackoverflow.com/questions/3099219/plot-with-2-y-axes-one-y-axis-on-the-left-and-another-y-axis-on-the-right/3101876#3101876">Hadely Wichham</a>, the main developer of ggplot2, the authors of ggplot2 hold the idea that:</p>
+      <p>Recently, many researchers employ R to conduct data cleaning, manipulation and visualization. Among all the R packages, ggplot2 is one of the most popular, fancy and powerful tool to visualize data. Although ggplot2 is very convenient and easy to use, it is difficult to plot data in dual y-axis. According to the comments from <a href="https://stackoverflow.com/questions/3099219/plot-with-2-y-axes-one-y-axis-on-the-left-and-another-y-axis-on-the-right/3101876#3101876">Hadely Wichham on June 23, 2010</a>, the main developer of ggplot2, the authors of ggplot2 hold the idea that:</p>
 <blockquote>
 <p>It’s not possible in ggplot2 because I believe plots with separate y scales (not y-scales that are transformations of each other) are fundamentally flawed. Some problems:</p>
 </blockquote>
@@ -385,9 +383,9 @@
 <li>They are arbitrary: why have only 2 scales, not 3, 4 or ten?</li>
 </ul>
 </blockquote>
-<p>Even though there exist some concerns regarding dual y-axis plot, it is very convenient for hydrologist and environmental engineers, who focus on stream nutrient dynamics, to plot both hydrograph and chemograph in the same graph. To make the dual y-axis graph, we can use a built-in ggplot2 function, <a href="http://ggplot2.tidyverse.org/reference/sec_axis.html"><em>sec_axis()</em></a>, to add second y axis.</p>
-<div id="a-reproducible-example-to-show-hydrograph-and-chemograph" class="section level2">
-<h2>A reproducible example to show hydrograph and chemograph</h2>
+<p>Even though there exist some concerns regarding dual y-axis plot, it is very convenient for hydrologist and environmental engineers, who focus on stream nutrient dynamics, to plot both hydrograph and chemograph in the same graph. To make the dual y-axis graph, we can use a built-in ggplot2 function, <a href="http://ggplot2.tidyverse.org/reference/sec_axis.html"><em>sec_axis()</em> updated in Nov. 2016</a>, to add second y axis.</p>
+<div id="a-reproducible-example-to-show-hydrograph-and-chemograph-in-dual-y-axis" class="section level2">
+<h2>A reproducible example to show hydrograph and chemograph in dual y-axis</h2>
 <p>The <em>sec_axis()</em> function is actually the projection the original y axis to a secondary axis. The tricky is to define a proper transformation function. We can use the ratio of maximum solute concentration over maximum stream discharge to transform the y axis. There is an example using the stream discharge and turbidity data from USGS.</p>
 <pre class="r"><code># import libraries
 require(dataRetrieval)

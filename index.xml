@@ -25,7 +25,7 @@
       <pubDate>Tue, 08 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/how-to-visualize-hydrograph-and-chemograph-in-the-same-plot/</guid>
-      <description>&lt;p&gt;Recently, many researchers employ R to conduct data cleaning, manipulation and visualization. Among all the R packages, ggplot2 is one of the most popular, fancy and powerful tool to visualize data. Although ggplot2 is very convenient and easy to use, it is difficult to plot data in dual y-axis. According to the comments from &lt;a href=&#34;https://stackoverflow.com/questions/3099219/plot-with-2-y-axes-one-y-axis-on-the-left-and-another-y-axis-on-the-right/3101876#3101876&#34;&gt;Hadely Wichham&lt;/a&gt;, the main developer of ggplot2, the authors of ggplot2 hold the idea that:&lt;/p&gt;
+      <description>&lt;p&gt;Recently, many researchers employ R to conduct data cleaning, manipulation and visualization. Among all the R packages, ggplot2 is one of the most popular, fancy and powerful tool to visualize data. Although ggplot2 is very convenient and easy to use, it is difficult to plot data in dual y-axis. According to the comments from &lt;a href=&#34;https://stackoverflow.com/questions/3099219/plot-with-2-y-axes-one-y-axis-on-the-left-and-another-y-axis-on-the-right/3101876#3101876&#34;&gt;Hadely Wichham on June 23, 2010&lt;/a&gt;, the main developer of ggplot2, the authors of ggplot2 hold the idea that:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;It’s not possible in ggplot2 because I believe plots with separate y scales (not y-scales that are transformations of each other) are fundamentally flawed. Some problems:&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -37,9 +37,9 @@
 &lt;li&gt;They are arbitrary: why have only 2 scales, not 3, 4 or ten?&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Even though there exist some concerns regarding dual y-axis plot, it is very convenient for hydrologist and environmental engineers, who focus on stream nutrient dynamics, to plot both hydrograph and chemograph in the same graph. To make the dual y-axis graph, we can use a built-in ggplot2 function, &lt;a href=&#34;http://ggplot2.tidyverse.org/reference/sec_axis.html&#34;&gt;&lt;em&gt;sec_axis()&lt;/em&gt;&lt;/a&gt;, to add second y axis.&lt;/p&gt;
-&lt;div id=&#34;a-reproducible-example-to-show-hydrograph-and-chemograph&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;A reproducible example to show hydrograph and chemograph&lt;/h2&gt;
+&lt;p&gt;Even though there exist some concerns regarding dual y-axis plot, it is very convenient for hydrologist and environmental engineers, who focus on stream nutrient dynamics, to plot both hydrograph and chemograph in the same graph. To make the dual y-axis graph, we can use a built-in ggplot2 function, &lt;a href=&#34;http://ggplot2.tidyverse.org/reference/sec_axis.html&#34;&gt;&lt;em&gt;sec_axis()&lt;/em&gt; updated in Nov. 2016&lt;/a&gt;, to add second y axis.&lt;/p&gt;
+&lt;div id=&#34;a-reproducible-example-to-show-hydrograph-and-chemograph-in-dual-y-axis&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;A reproducible example to show hydrograph and chemograph in dual y-axis&lt;/h2&gt;
 &lt;p&gt;The &lt;em&gt;sec_axis()&lt;/em&gt; function is actually the projection the original y axis to a secondary axis. The tricky is to define a proper transformation function. We can use the ratio of maximum solute concentration over maximum stream discharge to transform the y axis. There is an example using the stream discharge and turbidity data from USGS.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# import libraries
 require(dataRetrieval)
