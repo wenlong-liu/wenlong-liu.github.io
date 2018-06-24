@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R on Wenlong Liu&#39;s website</title>
+    <link>/tags/r/</link>
+    <description>Recent content in R on Wenlong Liu&#39;s website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018 Wenlong Liu</copyright>
+    <lastBuildDate>Tue, 27 Feb 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>usfertilizer</title>
+      <link>/project/usfertilizer/</link>
+      <pubDate>Tue, 27 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/project/usfertilizer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hellow world!</title>
+      <link>/post/brand-new-personal-website-of-wenlong-liu-powered-by-hugo-academic-and-blogdown/</link>
+      <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/brand-new-personal-website-of-wenlong-liu-powered-by-hugo-academic-and-blogdown/</guid>
+      <description>Since Jan. 2018, my brand new website is published online. The website is powered by Blogdown and Hugo-academic, and deployed by Github Pages. All the codes are open to public and available at my github repository.
+I build this website to achieve two goals: helping others know more about my professional achievements, and presenting my most latest output (with details) to persons of interest. Therefore, I will list my publications, including journal articles, conference presentations and proceedings, and book chapters (if any) here.</description>
+    </item>
+    
+  </channel>
+</rss>

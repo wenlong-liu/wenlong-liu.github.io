@@ -29,81 +29,6 @@
     </item>
     
     <item>
-      <title>How to visualize hydrograph and chemograph in the same plot?</title>
-      <link>/post/how-to-visualize-hydrograph-and-chemograph-in-the-same-plot/</link>
-      <pubDate>Tue, 08 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/how-to-visualize-hydrograph-and-chemograph-in-the-same-plot/</guid>
-      <description>&lt;p&gt;Recently, many researchers employ R to conduct data cleaning, manipulation and visualization. Among all the R packages, ggplot2 is one of the most popular, fancy and powerful tool to visualize data. Although ggplot2 is very convenient and easy to use, it is difficult to plot data in dual y-axis. According to the comments from &lt;a href=&#34;https://stackoverflow.com/questions/3099219/plot-with-2-y-axes-one-y-axis-on-the-left-and-another-y-axis-on-the-right/3101876#3101876&#34;&gt;Hadely Wichham on June 23, 2010&lt;/a&gt;, the main developer of ggplot2, the authors of ggplot2 hold the idea that:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;It’s not possible in ggplot2 because I believe plots with separate y scales (not y-scales that are transformations of each other) are fundamentally flawed. Some problems:&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;The[y] are not invertible: given a point on the plot space, you can not uniquely map it back to a point in the data space.&lt;/li&gt;
-&lt;li&gt;They are relatively hard to read correctly compared to other options. See &lt;a href=&#34;https://www.lri.fr/~isenberg/publications/papers/Isenberg_2011_ASO.pdf&#34;&gt;A Study on Dual-Scale Data Charts&lt;/a&gt; by Petra Isenberg, Anastasia Bezerianos, Pierre Dragicevic, and Jean-Daniel Fekete for details.&lt;/li&gt;
-&lt;li&gt;They are easily manipulated to mislead: there is no unique way to specify the relative scales of the axes, leaving them open to manipulation. Two examples from the Junkcharts blog: &lt;a href=&#34;http://junkcharts.typepad.com/junk_charts/2006/06/illusion_of_suc.html&#34;&gt;one&lt;/a&gt;, &lt;a href=&#34;http://junkcharts.typepad.com/junk_charts/2006/05/the_crossover_l.html&#34;&gt;two&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;They are arbitrary: why have only 2 scales, not 3, 4 or ten?&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Even though there exist some concerns regarding dual y-axis plot, it is very convenient for hydrologist and environmental engineers, who focus on stream nutrient dynamics, to plot both hydrograph and chemograph in the same graph. To make the dual y-axis graph, we can use a built-in ggplot2 function, &lt;a href=&#34;http://ggplot2.tidyverse.org/reference/sec_axis.html&#34;&gt;&lt;em&gt;sec_axis()&lt;/em&gt; updated in Nov. 2016&lt;/a&gt;, to add second y axis.&lt;/p&gt;
-&lt;div id=&#34;a-reproducible-example-to-show-hydrograph-and-chemograph-in-dual-y-axis&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;A reproducible example to show hydrograph and chemograph in dual y-axis&lt;/h2&gt;
-&lt;p&gt;The &lt;em&gt;sec_axis()&lt;/em&gt; function is actually the projection the original y axis to a secondary axis. The tricky is to define a proper transformation function. We can use the ratio of maximum solute concentration over maximum stream discharge to transform the y axis. There is an example using the stream discharge and turbidity data from USGS.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# import libraries
-require(dataRetrieval)
-require(ggplot2)
-require(dplyr)
-
-# information for usgs stations.
-station_Id = &amp;quot;05446500&amp;quot; #Rock River Near Joslin, IL
-parameter_code = c(&amp;quot;00060&amp;quot;, &amp;quot;63680&amp;quot;)  # discharge, Turbidity (Form Neph).
-start_date = &amp;quot;2017-06-01&amp;quot;
-end_date = &amp;quot;2017-08-01&amp;quot;
-
-# retrieve data from usgs.
-turbidity_flow = readNWISuv(siteNumbers = station_Id,
-                            parameterCd = parameter_code,
-                            startDate = start_date,
-                            endDate = end_date)
-# data cleaning.
-turbidity_flow = renameNWISColumns(turbidity_flow)
-param_info = attr(turbidity_flow, &amp;quot;variableInfo&amp;quot;)
-site_info = attr(turbidity_flow, &amp;quot;siteInfo&amp;quot;)
-
-# the ratio of maximum solute concentration over maximum flow.
-trans_ratio = max(turbidity_flow$.HACH._Turb_Inst, na.rm = TRUE) / 
-  max(turbidity_flow$Flow_Inst, na.rm = TRUE)
-
-# plot data
-ts = ggplot(turbidity_flow, aes(x = dateTime))+
-  geom_point(aes(y = Flow_Inst, color = &amp;quot;Stream discharge&amp;quot;))+
-  geom_line(aes(y = Flow_Inst, color = &amp;quot;Stream discharge&amp;quot;))+
-  geom_point(aes(y = .HACH._Turb_Inst/trans_ratio, color = &amp;quot;Turbidity&amp;quot;))+
-  geom_line(aes(y = .HACH._Turb_Inst/trans_ratio, color = &amp;quot;Turbidity&amp;quot;))+
-  scale_y_continuous(name = param_info$variableDescription[1],
-                     sec.axis = sec_axis(~.*trans_ratio, name = &amp;quot;Turbidity, Form Neph, HACH&amp;quot;))+
-  ggtitle(site_info$station_nm)+
-  labs(color = &amp;quot;Parameters&amp;quot;)+
-  theme(legend.position =  c(0.15, 0.85))
-
-ts&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-05-08-how-to-visualize-hydrograph-and-chemograph-in-the-same-plot_files/figure-html/hydrograph-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;further-materials&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Further materials&lt;/h2&gt;
-&lt;p&gt;The example in this blog only considers 1:1 transformation between two Axis. Sometime there are complicated conditions where the transformation formula needs more attentions. Please visit the following sites for more information:&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://rpubs.com/MarkusLoew/226759&#34;&gt;Basic introduction of sec_axis()&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://whatalnk.github.io/r-tips/ggplot2-secondary-y-axis.nb.html&#34;&gt;More complicated plots&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;references&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;References:&lt;/h2&gt;
-&lt;p&gt;Some of the information in this blog was adapted from &lt;a href=&#34;https://rpubs.com/MarkusLoew/226759&#34;&gt;Markus Loew&lt;/a&gt;, &lt;a href=&#34;https://owi.usgs.gov/R/dataRetrieval.html#1&#34;&gt;DataRetrieval tutorial&lt;/a&gt;, &lt;a href=&#34;https://stackoverflow.com/questions/3099219/plot-with-2-y-axes-one-y-axis-on-the-left-and-another-y-axis-on-the-right/3101876#3101876&#34;&gt;Hadley’s comments&lt;/a&gt; and &lt;a href=&#34;http://ggplot2.tidyverse.org/reference/sec_axis.html&#34;&gt;Official website of sec_axis()&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Insights from intensive water quality sampling in a drained agriculutral field</title>
       <link>/talk/2018-04-11_wenlong_bryan_high_frequency/</link>
       <pubDate>Wed, 11 Apr 2018 00:00:00 -0400</pubDate>
@@ -168,10 +93,10 @@ ts&lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;References:&lt;/h2&gt;
 &lt;div id=&#34;refs&#34; class=&#34;references&#34;&gt;
 &lt;div id=&#34;ref-blaen2017high&#34;&gt;
-&lt;p&gt;Blaen, Phillip J, Kieran Khamis, Charlotte Lloyd, Sophie Comer-Warner, Francesco Ciocca, Rick M Thomas, A Rob MacKenzie, and Stefan Krause. 2017. “High-Frequency Monitoring of Catchment Nutrient Exports Reveals Highly Variable Storm Event Responses and Dynamic Source Zone Activation.” &lt;em&gt;Journal of Geophysical Research: Biogeosciences&lt;/em&gt; 122 (9). Wiley Online Library:2265–81.&lt;/p&gt;
+&lt;p&gt;Blaen, Phillip J, Kieran Khamis, Charlotte Lloyd, Sophie Comer-Warner, Francesco Ciocca, Rick M Thomas, A Rob MacKenzie, and Stefan Krause. 2017. “High-Frequency Monitoring of Catchment Nutrient Exports Reveals Highly Variable Storm Event Responses and Dynamic Source Zone Activation.” &lt;em&gt;Journal of Geophysical Research: Biogeosciences&lt;/em&gt; 122 (9). Wiley Online Library: 2265–81.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;ref-long2017patterns&#34;&gt;
-&lt;p&gt;Long, David T, Thomas C Voice, Irene Xagaroraki, Ao Chen, Huiyun Wu, Eunsang Lee, Amira Oun, and Fangli Xing. 2017. “Patterns of Cq Hysteresis Loops and Within an Integrative Pollutograph for Selected Inorganic and Organic Solutes and E. Coli in an Urban Salted Watershed During Winter-Early Spring Periods.” &lt;em&gt;Applied Geochemistry&lt;/em&gt; 83. Elsevier:93–107.&lt;/p&gt;
+&lt;p&gt;Long, David T, Thomas C Voice, Irene Xagaroraki, Ao Chen, Huiyun Wu, Eunsang Lee, Amira Oun, and Fangli Xing. 2017. “Patterns of Cq Hysteresis Loops and Within an Integrative Pollutograph for Selected Inorganic and Organic Solutes and E. Coli in an Urban Salted Watershed During Winter-Early Spring Periods.” &lt;em&gt;Applied Geochemistry&lt;/em&gt; 83. Elsevier: 93–107.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
