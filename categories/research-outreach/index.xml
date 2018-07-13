@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Wenlong Liu</copyright>
-    <lastBuildDate>Sun, 25 Feb 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 13 Jul 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/research-outreach/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Generate a reproducible map for county-level fertilizer estimation data in U.S.A. using R</title>
+      <link>/post/generate-a-reproducible-map-for-long-term-fertilizer-application-in-u-s-a-using-r/</link>
+      <pubDate>Fri, 13 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/generate-a-reproducible-map-for-long-term-fertilizer-application-in-u-s-a-using-r/</guid>
+      <description>Introduction and motivation Nutrients from synthetic fertilizer and manure are the dominating input source in many agricultural watersheds. Such nutrients, when exported into surface water bodies, have been identified as a primary cause of severe eutrophication in surface water bodies, such as Great Lakes and the Gulf of Mexico. To address the effects of agricultural activities on surface water bodies, researchers and environmental engineers are very interested to quantify the nutrient input from fertilizer.</description>
+    </item>
     
     <item>
       <title>Brief introduction of storm hysteresis effects in solute concentration-stream discharge (C-Q) relationship</title>

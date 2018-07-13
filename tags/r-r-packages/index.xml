@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>R-packages on Wenlong Liu&#39;s website</title>
-    <link>/tags/r-packages/</link>
-    <description>Recent content in R-packages on Wenlong Liu&#39;s website</description>
+    <title>R, r-packages on Wenlong Liu&#39;s website</title>
+    <link>/tags/r-r-packages/</link>
+    <description>Recent content in R, r-packages on Wenlong Liu&#39;s website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Wenlong Liu</copyright>
-    <lastBuildDate>Tue, 27 Feb 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 13 Jul 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/r-packages/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/r-r-packages/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>usfertilizer</title>
-      <link>/project/usfertilizer/</link>
-      <pubDate>Tue, 27 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/project/usfertilizer/</guid>
-      <description></description>
-    </item>
     
     <item>
-      <title>Generate a reproducible map for county-level fertilizer estimation data in U.S.A. using R</title>
+      <title>Generate a reproducible map for a county-level fertilizer application in U.S.A. using R</title>
       <link>/post/generate-a-reproducible-map-for-long-term-fertilizer-application-in-u-s-a-using-r/</link>
       <pubDate>Fri, 13 Jul 2018 00:00:00 +0000</pubDate>
       
