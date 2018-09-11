@@ -40,6 +40,15 @@
     </item>
     
     <item>
+      <title>Generate animated tracking maps for hurricanes and typhoons</title>
+      <link>/post/generate-animated-tracking-maps-for-hurricanes-and-typhoons/</link>
+      <pubDate>Tue, 11 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/generate-animated-tracking-maps-for-hurricanes-and-typhoons/</guid>
+      <description>As of now, Sep. 11th, 2018, Hurricane Florence (Category 4) is approaching to eastern coastal areas of United States. There are many ways to track the path of hurricanes (or typhoons) to conduct further analysis, such as flash flooding, ocean surge and property damages. In this blog, the author tries to plot the tracking of hurricanes, using both stastic and animated maps, with the help of R and related packages. Specifically, this blog is a reproducible output.</description>
+    </item>
+    
+    <item>
       <title>Generate a reproducible map for county-level fertilizer estimation data in U.S.A. using R</title>
       <link>/post/generate-a-reproducible-map-for-long-term-fertilizer-application-in-u-s-a-using-r/</link>
       <pubDate>Fri, 13 Jul 2018 00:00:00 +0000</pubDate>
